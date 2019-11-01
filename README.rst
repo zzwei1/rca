@@ -2,7 +2,7 @@
 eRCA for Weather Radar
 =====================
 
-This package is an extension of the relative calibration adjusment (RCA) technique developed for the calibration of weather radar. The extension, eRCA, is built to calculate RCA for C-, X-, and Ka-band radars that use both PPI and RHI scans.
+This package is an extension of the relative calibration adjusment (RCA) technique developed for the calibration of weather radar. The extension, eRCA, is built to calculate RCA for higher frequency (C-, X-, and Ka-band) radars that use both PPI and RHI scans.
 
 
 Description
@@ -14,8 +14,8 @@ Important Links
 ===============
 
 - Source Code Repository: https://github.com/josephhardinee/rca
-- Documentation: http://josephhardinee.github.io/rca
-- Examples: http://josephhardinee.github.io/rca/src/auto_examples/index.html TODO: fix this link
+- Documentation: https://josephhardinee.github.io/rca
+- Examples: https://josephhardinee.github.io/rca/examples.html
 - Issues: https://github.com/josephhardinee/rca/issues 
 
 Citing
@@ -26,7 +26,7 @@ Citing
 Install
 =======
 
-There are two methods for installing RCA for Weather Radar:
+There are two methods for installing eRCA for Weather Radar:
 
 From Source:
 ------------
@@ -50,30 +50,30 @@ This installs the latest package and dependencies.
 Usage
 =====
 
-TODO: Please refer to the publication
+The eRCA package is composed of functions and routines that are simple to run individually. However they may also iterated through and  combined into one or few scripts to mimic the eRCA workflow and ultimate calculation of a daily median RCA value. 
 
+Figures 1 and 2 summarize the steps for eRCA methodology (as described in TODO: link to eRCA publication) and represent the workflow and code structure of eRCA for Weather Radar. It is recommended to refer to this figure when constructing scripts for your own eRCA calculation.
 
-
-Figures 1 and 2 summarize the steps for RCA calculation and represent the workflow and code structure of RCA for Weather Radar.
+Sections 3.1 and 3.2 and the corresponding numbers refer to the written description of these steps in the eRCA publication (TODO: link here). 
 
 .. figure:: testdata/images/flowchart_cluttermap_small.png
    :scale: 50 %
-   
-   This is the caption for Figure 1 (not labeled?)
+   :alt: workflow for clutter maps
 
 
 .. figure:: testdata/images/flowchart_rca_small.png
    :scale: 50 %
    :alt: workflow for rca calculation
 
-   This is the caption for Figure 2 (is it actually labeled?) 
-
-
 
 Contributing
 ============
 
+Since eRCA is an open source Python package, contributions in any form are encouraged and, in some areas, needed! 
 
-Note
-====
+TODO: 
++ how to contribute 
++ what to contribute
++ how to contact
+
 
