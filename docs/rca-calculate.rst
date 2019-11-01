@@ -1,6 +1,10 @@
 Calculate RCA values
 --------------------
 
+RCA is a measure of the difference between a given day's median 95th percentile clutter area reflectivity and previously determined baseline 95th percentile clutter area reflectivity.
+
+To calculate RCA, several key pieces are required: a full day or radar files, a clutter map, and a baseline value. All of these are input in the daily_rca routine. The .json configuration file should be edited appropriately to specify the correct paths and dates. 
+
 .. code-block:: python
 
    # import commands
