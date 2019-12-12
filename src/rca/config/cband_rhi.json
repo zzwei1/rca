@@ -1,7 +1,7 @@
 {
     "config": "cband_rhi",
     "scan_type": "rhi",
-    "polarization": "dual",
+    "polarization": "horizontal",
     "data_directory": "/home/alexishunzinger/data/proj-shared/data_transfer/cor/corcsapr2cfrhsrhiM1.a1/",
     "file_extension": ".nc",
     "cluttermap_directory": "/home/alexishunzinger/projects/rca_aux/clutter_maps/",
