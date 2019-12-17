@@ -3,7 +3,7 @@ from netCDF4 import Dataset
 
 # get_pct_on_clutter_map.py contains 2 functions that extract variables from clutter map files for PPI and HSRHI
 # 1) get_pct_on_clutter_map_ppi: extracts clutter flag/mask for a PPI clutter map
-# 2) get_pct_on_clutter_map_hsrhi: extracts clutter flag/mask for an HSRHI clutter map
+# 2) get_pct_on_clutter_map_rhi: extracts clutter flag/mask for an HSRHI clutter map
 
 
 def get_pct_on_clutter_map_ppi(filename, polarization):
@@ -60,9 +60,9 @@ def get_pct_on_clutter_map_ppi(filename, polarization):
         )
 
 
-def get_pct_on_clutter_map_hsrhi(filename, polarization):
+def get_pct_on_clutter_map_rhi(filename, polarization):
     """
-    get_pct_on_clutter_map_ppi grabs and returns clutter map point percentage occurrences and clutter map
+    get_pct_on_clutter_map_rhi grabs and returns clutter map point percentage occurrences and clutter map
     masks from daily HSRHI clutter maps (in either H or H and V polarizations).
     
     Parameters

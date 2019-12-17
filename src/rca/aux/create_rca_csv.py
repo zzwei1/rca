@@ -24,7 +24,7 @@ def create_rca_csv(radar_config_file):
     site = config_vars["site_abbrev"]
     inst = config_vars["instrument_abbrev"]
 
-    header = ["DATE", "RCA_H", "RCA_V", "BASELINE"]
+    header = ["DATE", "RCA_H", "RCA_V", "NUM_PTS_H", "NUM_PTS_V"]
     daily_csv = daily_csv_dir + "daily_rca_" + scantype + "_" + site + inst + ".csv"
     with open(daily_csv, "w", newline="") as f:
         writer = csv.writer(f, delimiter=",")

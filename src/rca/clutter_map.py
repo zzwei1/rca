@@ -39,6 +39,13 @@ def clutter_map(radar_config_file, date):
     z_thresh = config_vars["z_threshold"]
 
     cluttermap_date = date
+    
+    # Identify which radar band you are using (change if statement as needed)
+    # Most important to identify Ka-band radars
+    if inst == "kasacr":
+        radar_band = "ka"
+    else:
+        radar_band = inst[0]
 
     # Lists to fill in loops below
     clutter_flag_h = []
@@ -51,7 +58,7 @@ def clutter_map(radar_config_file, date):
             radar = file_to_radar_object(f, extension)
             var_dict = get_var_arrays_from_radar_object(radar, radar_config_file)
             dt, cflag_h = create_clutter_flag_ppi(
-                var_dict, polarization, range_limit, z_thresh
+                var_dict, polarization, range_limit, z_thresh, radar_band
             )
             clutter_flag_h.append(cflag_h)
             date_time.append(dt)
@@ -93,7 +100,7 @@ def clutter_map(radar_config_file, date):
             radar = file_to_radar_object(f, extension)
             var_dict = get_var_arrays_from_radar_object(radar, radar_config_file)
             dt, cflag_h = create_clutter_flag_rhi(
-                var_dict, polarization, range_limit, z_thresh
+                var_dict, polarization, range_limit, z_thresh, radar_band
             )
             clutter_flag_h.append(cflag_h)
             date_time.append(dt)
@@ -139,7 +146,7 @@ def clutter_map(radar_config_file, date):
             radar = file_to_radar_object(f, extension)
             var_dict = get_var_arrays_from_radar_object(radar, radar_config_file)
             dt, cflag_h, cflag_v = create_clutter_flag_ppi(
-                var_dict, polarization, range_limit, z_thresh
+                var_dict, polarization, range_limit, z_thresh, radar_band
             )
             clutter_flag_h.append(cflag_h)
             clutter_flag_v.append(cflag_v)
@@ -193,7 +200,7 @@ def clutter_map(radar_config_file, date):
             radar = file_to_radar_object(f, extension)
             var_dict = get_var_arrays_from_radar_object(radar, radar_config_file)
             dt, cflag_h, cflag_v = create_clutter_flag_rhi(
-                var_dict, polarization, range_limit, z_thresh
+                var_dict, polarization, range_limit, z_thresh, radar_band
             )
             clutter_flag_h.append(cflag_h)
             clutter_flag_v.append(cflag_v)

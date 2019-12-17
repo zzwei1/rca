@@ -2,7 +2,7 @@ import numpy as np
 from .aux.create_masks import create_az_mask_ppi, create_az_mask_rhi
 
 
-def create_clutter_flag_ppi(variable_dictionary, polarization, range_limit, z_thresh):
+def create_clutter_flag_ppi(variable_dictionary, polarization, range_limit, z_thresh, radar_band):
     """
     create_clutter_flag_ppi creates a clutter flag array for a particular PPI radar file (using a precipitation-free day) that will be used for
     clutter map creation. It returns the datetime of the file and the clutter flag arrays for reflectivity in the chosen polarizations (H and V or just H)
@@ -21,7 +21,9 @@ def create_clutter_flag_ppi(variable_dictionary, polarization, range_limit, z_th
     z_thresh: float
         reflectivity threshold for clutter cut off
         i.e. gate reflectivity must be greater than z_thresh to be considered clutter
-    
+    radar_band: str
+        specify which band of radar is used (i.e. c, x, ka)    
+
     Returns
     -------
     date_time: str
@@ -50,7 +52,7 @@ def create_clutter_flag_ppi(variable_dictionary, polarization, range_limit, z_th
 
     # H POLARIZATION
     for idx_az, az in enumerate(theta_list):  # loop thru each azimuth in list
-        az_mask = create_az_mask_ppi(az, theta)  # create mask for desired azimuths
+        az_mask = create_az_mask_ppi(az, theta, radar_band)  # create mask for desired azimuths
         zh_rays = zh[
             az_mask, :
         ]  # get Zh values for only the desired elevation and azimuth
@@ -85,7 +87,7 @@ def create_clutter_flag_ppi(variable_dictionary, polarization, range_limit, z_th
 
         # V POLARIZATION
         for idx_az, az in enumerate(theta_list):  # loop thru each azimuth in list
-            az_mask = create_az_mask_ppi(az, theta)  # create mask for desired azimuths
+            az_mask = create_az_mask_ppi(az, theta, radar_band)  # create mask for desired azimuths
             zv_rays = zv[
                 az_mask, :
             ]  # get Zv values for only the desired elevation and azimuth
@@ -115,7 +117,7 @@ def create_clutter_flag_ppi(variable_dictionary, polarization, range_limit, z_th
         return date_time, clutter_flag_h, clutter_flag_v
 
 
-def create_clutter_flag_rhi(variable_dictionary, polarization, range_limit, z_thresh):
+def create_clutter_flag_rhi(variable_dictionary, polarization, range_limit, z_thresh, radar_band):
     """
     create_clutter_flag_rhi creates a clutter flag array for a particular HSRHI radar file (using a precipitation-free day) that will be used for
     clutter map creation. It returns the datetime of the file and the clutter flag arrays for reflectivity in the chosen polarizations (H and V or just H)
@@ -134,7 +136,9 @@ def create_clutter_flag_rhi(variable_dictionary, polarization, range_limit, z_th
     z_thresh: float
         reflectivity threshold for clutter cut off
         i.e. gate reflectivity must be greater than z_thresh to be considered clutter
-    
+    radar_band: str
+        specify which band of radar is used (i.e. c, x, ka)     
+ 
     Returns
     -------
     date_time: str
@@ -165,7 +169,7 @@ def create_clutter_flag_rhi(variable_dictionary, polarization, range_limit, z_th
 
     # H POLARIZATION
     for idx_az, az in enumerate(theta_list):  # loop thru each azimuth in list
-        az_mask = create_az_mask_hsrhi(az, theta)  # create mask for desired azimuths
+        az_mask = create_az_mask_rhi(az, theta, radar_band)  # create mask for desired azimuths
         for idx_el, el in enumerate(
             elev_list
         ):  # loop thru each element in desired elevation grid boxes
@@ -204,8 +208,8 @@ def create_clutter_flag_rhi(variable_dictionary, polarization, range_limit, z_th
 
         # V POLARIZATION
         for idx_az, az in enumerate(theta_list):  # loop thru each azimuth in list
-            az_mask = create_az_mask_hsrhi(
-                az, theta
+            az_mask = create_az_mask_rhi(
+                az, theta, radar_band
             )  # create mask for desired azimuths
             for idx_el, el in enumerate(
                 elev_list

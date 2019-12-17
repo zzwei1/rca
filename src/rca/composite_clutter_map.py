@@ -7,7 +7,7 @@ import numpy as np
 from netCDF4 import Dataset
 from .get_pct_on_clutter_map import (
     get_pct_on_clutter_map_ppi,
-    get_pct_on_clutter_map_hsrhi,
+    get_pct_on_clutter_map_rhi,
 )
 
 
@@ -89,7 +89,7 @@ def composite_clutter_map(radar_config_file):
             )
         ):
             print(f)
-            ClutterMaskH, ClutterPCTH = get_pct_on_clutter_map_hsrhi(f, polarization)
+            ClutterMaskH, ClutterPCTH = get_pct_on_clutter_map_rhi(f, polarization)
             # Append output from each HSRHI file to lists
             clutter_mask_h.append(ClutterMaskH)
             clutter_pct_h.append(ClutterPCTH)
@@ -97,7 +97,7 @@ def composite_clutter_map(radar_config_file):
         array_h = np.zeros(
             (
                 len(clutter_mask_h),
-                len(clutter_mask_h[0][:, :, 0]),
+                len(clutter_mask_h[0][:, 0, 0]),
                 len(clutter_mask_h[0][0, :, 0]),
                 len(clutter_mask_h[0][0, 0, :]),
             )
@@ -106,6 +106,8 @@ def composite_clutter_map(radar_config_file):
             array_h[i, :, :, :] = clutter_mask_h[i]
         # Calculate percentage of "clutter ON" for each grid box in clutter map grid
         pct_h = np.sum(array_h, axis=0) / len(array_h[:, 0, 0, 0])
+        print(array_h.shape)
+        print(pct_h.shape)
         clutter_map_h_mask = pct_h > 0.8
         dataset = Dataset(
             cluttermap_dir
@@ -114,12 +116,12 @@ def composite_clutter_map(radar_config_file):
             + "_"
             + site
             + inst
-            + "_composite.nc"
+            + "_composite.nc",
             "w",
             format="NETCDF4_CLASSIC",
         )
         azi = dataset.createDimension("azi", 6)
-        rang = dataset.createDimension("rang", 20)
+        rang = dataset.createDimension("rang", 40)
         el = dataset.createDimension("el", 10)
         HPCT_ON = dataset.createVariable(
             "clutter_gate_pcts_zh", np.float64, ("azi", "el", "rang")
@@ -208,7 +210,7 @@ def composite_clutter_map(radar_config_file):
             )
         ):
             print(f)
-            ClutterMaskH, ClutterMaskV, ClutterPCTH, ClutterPCTV = get_pct_on_clutter_map_hsrhi(
+            ClutterMaskH, ClutterMaskV, ClutterPCTH, ClutterPCTV = get_pct_on_clutter_map_rhi(
                 f, polarization
             )
             # Append output from each HSRHI file to lists
