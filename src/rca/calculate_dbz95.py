@@ -82,7 +82,7 @@ def calculate_dbz95_ppi(
     #        waveguide cleaned
     #        zh_offset = 10.6
     zh_offset = 10.6
-    if radar_band == 'ka' and date_int < 20190318:
+    if radar_band == 'ka':
         zh = zh + zh_offset
     ###########################
 
@@ -297,7 +297,7 @@ def calculate_dbz95_rhi(
     #        waveguide cleaned
     #        zh_offset = 10.6
     zh_offset = 10.6
-    if radar_band == 'ka' and date_int < 20190318:
+    if radar_band == 'ka':
         zh = zh + zh_offset
     ###########################
 
