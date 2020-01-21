@@ -69,6 +69,8 @@ def calculate_dbz95_ppi(
     theta = variable_dictionary["azimuth"]
     zh = variable_dictionary["reflectivity_h"]
 
+    date_int = int(date_time[0:4]+date_time[5:7]+date_time[8:10])
+
     ###########################
     # Special case
     #    KASACR calibration constant during CACTI
@@ -80,7 +82,8 @@ def calculate_dbz95_ppi(
     #        waveguide cleaned
     #        zh_offset = 10.6
     zh_offset = 10.6
-    #zh = zh + zh_offset
+    if radar_band == 'ka' and date_int < 20190318:
+        zh = zh + zh_offset
     ###########################
 
     range_shape = range_limit / 1000

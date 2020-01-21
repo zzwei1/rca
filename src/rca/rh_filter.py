@@ -20,9 +20,7 @@ def rh_filter(
     rh_thresh
 ):
     """
-    rh_filter uses a previously generated clutter map to 1) identify clutter gates;
-    2) blank out identified clutter gates; 3) calculate integrated attentuation along each ray;
-    4) threshold for integrated attentuation; 5) return a 1 or 0 for passing or not passing IAH filter
+    rh_filter uses TODO: FILL IN
     
     Parameters
     ----------

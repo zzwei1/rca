@@ -50,11 +50,11 @@ def daily_rca(radar_config_file, date, filters=True):
         radar_band = inst[0]
 
     daily_csv_fullpath = (
-        dailycsvdir + "daily_rca_" + scantype + "_" + site + inst + ".csv"
+        dailycsvdir + "dailies/" + "daily_rca_" + scantype + "_" + site + inst + ".csv"
     )
 
     hourly_csv_fullpath = (
-        dailycsvdir + "hourlies/"  + "hourly_rca_" + scantype + "_" + site + inst + "_" + date + ".csv"
+        dailycsvdir + "hourlies/" + site+inst + "/"  + "hourly_rca_" + scantype + "_" + site + inst + "_" + date + ".csv"
     )
 
     # Read in clutter map netCDF and baseline value netCDF
@@ -98,7 +98,7 @@ def daily_rca(radar_config_file, date, filters=True):
     # Prep for filters, if argument is set to True (read in and grab variables)
     if filters==True:
         dataset_f = Dataset(
-                    dailycsvdir+"/filters/"
+                    dailycsvdir+"filters/"
                     + "filters_"
                     + scantype
                     + "_"
